@@ -1,0 +1,24 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "taskName": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/jobscart.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "dependsOn": "ng build"
+        },
+        {
+            "taskName": "ng build",
+            "command": "ng",
+            "type": "shell",
+            "args": [
+                "build"
+            ]
+        }
+    ]
+}
