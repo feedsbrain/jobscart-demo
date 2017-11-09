@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace JobsCart
+namespace JobsCart.Controllers
 {
     [Route("api/[Controller]")]
     public class HelloController : Controller
