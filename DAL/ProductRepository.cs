@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using JobsCart.Models;
 
 namespace JobsCart.DAL {
@@ -11,6 +12,10 @@ namespace JobsCart.DAL {
 
         public List<Product> All () {
             return DB.products;
+        }
+
+        public Product FirstOrDefault (Func<Product, bool> expression) {
+            return DB.products.FirstOrDefault (expression);
         }
 
         #region IDisposable Support
@@ -42,6 +47,7 @@ namespace JobsCart.DAL {
             // TODO: uncomment the following line if the finalizer is overridden above.
             // GC.SuppressFinalize(this);
         }
+
         #endregion
     }
 }

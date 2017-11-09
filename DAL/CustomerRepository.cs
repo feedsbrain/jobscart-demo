@@ -11,12 +11,11 @@ namespace JobsCart.DAL {
         public CustomerRepository () => DB = new FakeDb ();
 
         public List<Customer> All () {
-            var results = new List<Customer> ();
-            foreach (var r in DB.customers) {
-                r.Pricings = DB.pricings.Where (p => r.PricingIds.Contains (p.Id));
-                results.Add (r);
-            }
-            return results;
+            return DB.customers;
+        }
+
+        public Customer FirstOrDefault (Func<Customer, bool> expression) {
+            return DB.customers.FirstOrDefault (expression);
         }
 
         #region IDisposable Support
@@ -48,6 +47,7 @@ namespace JobsCart.DAL {
             // TODO: uncomment the following line if the finalizer is overridden above.
             // GC.SuppressFinalize(this);
         }
+
         #endregion
     }
 }

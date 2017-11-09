@@ -1,9 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace JobsCart.Models
-{
-    public class Product : IDataModel
-    {
+namespace JobsCart.Models {
+    public class Product : IDataModel {
         [Key]
         public string Id { get; set; }
         public string Name { get; set; }

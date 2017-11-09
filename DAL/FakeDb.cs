@@ -14,13 +14,13 @@ namespace JobsCart.DAL {
             new Product { Id = "premium", Name = "Premium Ad", Description = "Same benefits as Standout Ad, but also puts the advertisement at the top of the results, allowing higher visibility", Price = 394.99 }
         };
 
-        public List<Pricing> pricings = new List<Pricing> {
-            new Pricing { Id = "3for2classic", ProductId = "classic", Description = "Gets a 3 for 2 deals on Classic Ads", MinQuantity = 3, BonusQuantity = 1 },
-            new Pricing { Id = "fixedprice2", ProductId = "standout", Description = "Gets a discount on Standout Ads where the price drops to $299.99 per ad", MinQuantity = 1, Price = 299.99 },
-            new Pricing { Id = "4ormore", ProductId = "premium", Description = "Gets a discount on Premium Ads where 4 or more are purchased. The price drops to $379.99 per ad", MinQuantity = 4, Price = 379.99 },
-            new Pricing { Id = "5for4classic", ProductId = "classic", Description = "Gets a 5 for 4 deal on Classic Ads", MinQuantity = 5, BonusQuantity = 1 },
-            new Pricing { Id = "fixedprice3", ProductId = "standout", Description = "Gets a discount on Standout Ads where the price drops to $309.99 per ad", MinQuantity = 1, Price = 309.99 },
-            new Pricing { Id = "3ormore", ProductId = "premium", Description = "Gets a discount on Premium Ads when 3 or more are purchased. The price drops to $389.99 per ad", MinQuantity = 3, Price = 389.99 }
+        public List<PriceRule> pricerules = new List<PriceRule> {
+            new BonusWithMinQuantityRule { Id = "3for2classic", ProductId = "classic", Description = "Gets a 3 for 2 deals on Classic Ads", MinQuantity = 3, BonusQuantity = 1 },
+            new DiscountWithMinQuantity { Id = "fixedprice2", ProductId = "standout", Description = "Gets a discount on Standout Ads where the price drops to $299.99 per ad", MinQuantity = 1, Price = 299.99 },
+            new DiscountWithMinQuantity { Id = "4ormore", ProductId = "premium", Description = "Gets a discount on Premium Ads where 4 or more are purchased. The price drops to $379.99 per ad", MinQuantity = 4, Price = 379.99 },
+            new BonusWithMinQuantityRule { Id = "5for4classic", ProductId = "classic", Description = "Gets a 5 for 4 deal on Classic Ads", MinQuantity = 5, BonusQuantity = 1 },
+            new DiscountWithMinQuantity { Id = "fixedprice3", ProductId = "standout", Description = "Gets a discount on Standout Ads where the price drops to $309.99 per ad", MinQuantity = 1, Price = 309.99 },
+            new DiscountWithMinQuantity { Id = "3ormore", ProductId = "premium", Description = "Gets a discount on Premium Ads when 3 or more are purchased. The price drops to $389.99 per ad", MinQuantity = 3, Price = 389.99 }
         };
 
         public List<Customer> customers = new List<Customer> {

@@ -5,5 +5,6 @@ using JobsCart.Models;
 namespace JobsCart.DAL {
     public interface IRepository<T> : IDisposable where T : IDataModel {
         List<T> All ();
+        T FirstOrDefault (Func<T, bool> expression);
     }
 }

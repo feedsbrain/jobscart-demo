@@ -1,16 +1,21 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using JobsCart.Models;
 
 namespace JobsCart.DAL {
-    public class PricingRepository : IRepository<Pricing> {
+    public class PriceRulesRepository : IRepository<PriceRule> {
 
         protected FakeDb DB = null;
 
-        public PricingRepository () => DB = new FakeDb ();
+        public PriceRulesRepository () => DB = new FakeDb ();
 
-        public List<Pricing> All () {
-            return DB.pricings;
+        public List<PriceRule> All () {
+            return DB.pricerules;
+        }
+
+        public PriceRule FirstOrDefault (Func<PriceRule, bool> expression) {
+            return DB.pricerules.FirstOrDefault (expression);
         }
 
         #region IDisposable Support
@@ -42,6 +47,7 @@ namespace JobsCart.DAL {
             // TODO: uncomment the following line if the finalizer is overridden above.
             // GC.SuppressFinalize(this);
         }
+
         #endregion
     }
 }

@@ -6,6 +6,5 @@ namespace JobsCart.Models {
         [Key]
         public string LoginId { get; set; }
         public IEnumerable<string> PricingIds { get; set; }
-        public IEnumerable<Pricing> Pricings { get; set; }
     }
 }
