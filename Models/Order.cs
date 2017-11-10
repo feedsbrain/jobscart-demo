@@ -24,6 +24,7 @@ namespace JobsCart.Models {
             get {
                 // TODO: Use rule engine to apply discount
                 double price = 0;
+                /*
                 using (var rules = new PriceRulesRepository ()) {
                     var rule = rules.FirstOrDefault (r => r.ProductId == this.Product.Id && this.Customer.PricingIds.Contains (r.Id));
 
@@ -41,6 +42,7 @@ namespace JobsCart.Models {
                         }
                     }
                 }
+                 */
                 return price;
             }
         }
