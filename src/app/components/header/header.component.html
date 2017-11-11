@@ -1,24 +1,45 @@
-<mat-toolbar color="primary">
-   <span><img class="main-logo" src="/assets/images/seekasia.png"/></span>
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
 
-  <button mat-icon-button [mat-menu-trigger-for]="menu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-</mat-toolbar>
-<mat-menu x-position="before" #menu="matMenu">
-  <button mat-menu-item>Option 1</button>
-  <button mat-menu-item>Option 2</button>
-</mat-menu>
+  <!-- Navbar brand -->
+  <a class="navbar-brand" href="#">
+    <img class="main-logo" src="/assets/images/seekasia.png" alt="SEEK Asia">
+  </a>
 
-<mat-card>
-  <button mat-button>All</button>
-  <button mat-raised-button>Of</button>
-  <button mat-raised-button color="primary">The</button>
-  <button mat-raised-button color="accent">Buttons</button>
-</mat-card>
+  <!-- Links -->
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link waves-light" mdbRippleRadius>Home
+        <span class="sr-only">(current)</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link waves-light" mdbRippleRadius>Features</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link waves-light" mdbRippleRadius>Pricing</a>
+    </li>
+  </ul>
+  <!-- Links -->
 
-<span class="done">
-  <button mat-fab>
-    <mat-icon>check circle</mat-icon>
-  </button>
-</span>
+  <!-- Right Menu -->
+  <ul class="navbar-nav navbar-right">
+    <li *ngIf="localStorage.getItem('currentUser') != null">
+      <a href="#">
+        <span class="glyphicon glyphicon-user"></span> Logged as
+        <b>{{localStorage.getItem('currentUser') }}</b>
+      </a>
+    </li>
+    <li *ngIf="localStorage.getItem('currentUser') != null">
+      <a (click)="logout()">
+        <span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+    </li>
+    <li *ngIf="localStorage.getItem('currentUser')  == null ">
+      <a >
+        <span class="glyphicon glyphicon-log-in"></span> Log In</a>
+    </li>
+  </ul>
+  <!-- Right Menu -->
+
+</mdb-navbar>
+<!--/.Navbar-->

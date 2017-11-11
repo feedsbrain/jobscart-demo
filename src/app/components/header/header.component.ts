@@ -8,9 +8,17 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  localStorage: any
+
+  constructor() {
+    this.localStorage = localStorage
+  }
 
   ngOnInit() {
+  }
+  
+  logout() {
+    localStorage.removeItem('currentUser')
   }
 
 }
