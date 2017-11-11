@@ -12,6 +12,7 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
 import { ListingComponent } from './components/listing/listing.component';
 import { LoginComponent } from './components/login/login.component';
 import { OrderComponent } from './components/order/order.component';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { OrderComponent } from './components/order/order.component';
     FlexLayoutModule,
     MDBBootstrapModule.forRoot()
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
