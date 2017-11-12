@@ -60,6 +60,7 @@ namespace JobsCart {
             });
 
             services.AddMvc ();
+            services.AddCors ();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,6 +68,7 @@ namespace JobsCart {
             if (env.IsDevelopment ()) {
                 app.UseDeveloperExceptionPage ();
             }
+            app.UseCors (builder => builder.AllowAnyOrigin ().AllowAnyMethod ().AllowAnyHeader ());
             app.UseDefaultFiles ();
             app.UseStaticFiles ();
             app.UseMvc ();
