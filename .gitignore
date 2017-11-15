@@ -313,3 +313,4 @@ __pycache__/
 
 # Static Files
 /wwwroot
+/api/wwwroot

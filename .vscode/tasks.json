@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/jobscart.csproj"
+                "${workspaceFolder}/api/jobscart.csproj"
             ],
             "problemMatcher": "$msCompile",
             "dependsOn": "ng build"
