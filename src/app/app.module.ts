@@ -14,7 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { OrderComponent } from './components/order/order.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ProductService } from './services/product.service';
-import { ProgressSpinnerModule, DialogModule, SpinnerModule } from 'primeng/primeng';
+import { ProgressSpinnerModule, DialogModule, SpinnerModule, MessagesModule, MessageModule } from 'primeng/primeng';
 import { HttpModule } from '@angular/http';
 
 @NgModule({
@@ -30,7 +30,9 @@ import { HttpModule } from '@angular/http';
     NgbModule.forRoot(),
     ProgressSpinnerModule,
     DialogModule,
-    SpinnerModule
+    SpinnerModule,
+    MessagesModule,
+    MessageModule
   ],
   providers: [AuthGuard, ProductService],
   bootstrap: [AppComponent],

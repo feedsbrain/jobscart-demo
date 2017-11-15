@@ -3,6 +3,11 @@
 </div>
 
 <div fxLayout="column" fxLayoutAlign="space-around center" *ngIf="!isLoading" fxFlexFill>
+  <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="10" fxFlexFill>
+    <div fxFlex="1"></div>
+    <p-messages [(value)]="msgs" fxFlex></p-messages>
+    <div fxFlex="1"></div>
+  </div>
   <div fxLayout="row" fxLayoutAlign="space-around center" class="listing" fxFlex>
     <!--Card-->
     <mat-card *ngFor="let order of orders; index as i" class="product-card">
@@ -12,7 +17,7 @@
         <h2 class="h2-responsive" class="title">{{order.Product.Name}}</h2>
       </mat-card-title>
       <mat-card-subtitle>
-        <p class="price">{{order.Product.Price}}</p>
+        <p class="price">{{order.Product.Price | currency:'USD':'$'}}</p>
       </mat-card-subtitle>
       <!--/Card Header-->
 
@@ -22,7 +27,7 @@
           {{order.Product.Description}}
         </p>
 
-        <p-spinner size="10" [(ngModel)]="order.Quantity" [min]="1" [max]="100" [step]="1" class="quantity" [placeholder]="0"></p-spinner>
+        <p-spinner size="10" [(ngModel)]="order.Quantity" [min]="1" [max]="100" [step]="1" class="quantity" [placeholder]="1"></p-spinner>
       </mat-card-content>
       <!--/Card content-->
 
@@ -30,6 +35,6 @@
     <!--/Card-->
   </div>
   <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="25">
-    <button mat-raised-button color="primary">Checkout</button>
+    <button mat-raised-button color="accent" (click)="checkout()">Checkout</button>
   </div>
 </div>

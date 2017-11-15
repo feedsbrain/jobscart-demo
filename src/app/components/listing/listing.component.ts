@@ -3,6 +3,8 @@ import { ProductService } from '../../services/product.service';
 import { Router } from '@angular/router';
 import { Product } from '../../api/models/product';
 import { Order } from '../../api/models/order';
+import { Message } from 'primeng/primeng';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-listing',
@@ -14,6 +16,7 @@ export class ListingComponent implements OnInit {
 
   orders: Array<Order>;
   isLoading = true;
+  msgs: Message[] = [];
 
   constructor(private productService: ProductService, private router: Router) { }
 
@@ -39,7 +42,39 @@ export class ListingComponent implements OnInit {
   }
 
   checkout() {
+    let quantity = 0;
+    this.orders.forEach(o => {
+      quantity += o.Quantity;
+    });
+    if (quantity === 0) {
+      this.showWarn('Invalid quantity ...');
+      return;
+    }
+    // TODO: Success
+  }
 
+  showSuccess(message: string) {
+    this.msgs = [];
+    this.msgs.push({ severity: 'success', summary: 'Success Message', detail: message });
+  }
+
+  showInfo(message: string) {
+    this.msgs = [];
+    this.msgs.push({ severity: 'info', summary: 'Info Message', detail: message });
+  }
+
+  showWarn(message: string) {
+    this.msgs = [];
+    this.msgs.push({ severity: 'warn', summary: 'Warn Message', detail: message });
+  }
+
+  showError(message: string) {
+    this.msgs = [];
+    this.msgs.push({ severity: 'error', summary: 'Error Message', detail: message });
+  }
+
+  clearMessage() {
+    this.msgs = [];
   }
 
 }
