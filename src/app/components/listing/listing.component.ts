@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Router } from '@angular/router';
 import { Product } from '../../api/models/product';
+import { Order } from '../../api/models/order';
 
 @Component({
   selector: 'app-listing',
@@ -11,28 +12,30 @@ import { Product } from '../../api/models/product';
 })
 export class ListingComponent implements OnInit {
 
-  products: Array<Product>;
-  isLoading: boolean = true;
+  orders: Array<Order>;
+  isLoading = true;
 
   constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit() {
     this.productService.getProductList().subscribe(result => {
-      this.isLoading = false
-      this.products = result.map(product => {
-        let p = new Product
-        p.Id = product.Id;
-        p.Name = product.Name;
-        p.Description = product.Description;
-        p.Price = product.price;
-        p.Quantity = 0;
-        return p;
-      })
+      this.isLoading = false;
+      this.orders = result.map(p => {
+        const o = new Order();
+        o.Product = new Product();
+        o.Product.Id = p.id;
+        o.Product.Name = p.name;
+        o.Product.Description = p.description;
+        o.Product.Price = p.price;
+        o.Quantity = 1;
+        return o;
+      });
     }, err => {
-      if (err.status == 401)
-        //Not Authorized
-        this.router.navigate(['/login'])
-    })
+      if (err.status === 401) {
+        // Not Authorized
+        this.router.navigate(['/login']);
+      }
+    });
   }
 
   checkout() {

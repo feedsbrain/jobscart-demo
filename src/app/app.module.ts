@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app.routing';
-import { FlexLayoutModule } from "@angular/flex-layout";
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
@@ -14,7 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { OrderComponent } from './components/order/order.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ProductService } from './services/product.service';
-import { ProgressSpinnerModule } from 'primeng/primeng';
+import { ProgressSpinnerModule, DialogModule, SpinnerModule } from 'primeng/primeng';
 import { HttpModule } from '@angular/http';
 
 @NgModule({
@@ -28,7 +28,9 @@ import { HttpModule } from '@angular/http';
     MaterialModule,
     FlexLayoutModule,
     NgbModule.forRoot(),
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    DialogModule,
+    SpinnerModule
   ],
   providers: [AuthGuard, ProductService],
   bootstrap: [AppComponent],

@@ -1,27 +1,30 @@
-<p-progressSpinner *ngIf="isLoading"></p-progressSpinner>
+<div class="spinner">
+  <p-progressSpinner *ngIf="isLoading" fxLayout="row" fxLayoutAlign="space-evenly center" fxFill></p-progressSpinner>
+</div>
 
-<div *ngFor="let product of products" class="card">
+<div fxLayout="row" fxLayoutAlign="space-evenly center" class="listing" *ngIf="!isLoading">
   <!--Card-->
-  <mat-card>
+  <mat-card *ngFor="let order of orders; index as i" class="product-card">
 
-    <!--Card image-->
+    <!--Card Header-->
     <mat-card-title>
-      <h2 class="h2-responsive">Heading</h2>
+      <h2 class="h2-responsive" class="title">{{order.Product.Name}}</h2>
     </mat-card-title>
     <mat-card-subtitle>
-      <p>Subheading</p>
+      <p class="price">{{order.Product.Price}}</p>
     </mat-card-subtitle>
-    <!--/Card image-->
+    <!--/Card Header-->
 
     <!--Card content-->
-    <mat-card-content>
-      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, ex, recusandae. Facere modi sunt, quod quibusdam
-        dignissimos neque rem nihil ratione est placeat vel, natus non quos laudantium veritatis sequi.Ut enim ad minima
-        veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.
+    <mat-card-content class="description">
+      <p class="card-text">
+        {{order.Product.Description}}
       </p>
+
+      <p-spinner size="10" [(ngModel)]="order.Quantity" [min]="1" [max]="100" [step]="1" class="quantity" [placeholder]="0"></p-spinner>
     </mat-card-content>
-    <!--/.Card content-->
+    <!--/Card content-->
 
   </mat-card>
-  <!--/.Card-->
+  <!--/Card-->
 </div>
