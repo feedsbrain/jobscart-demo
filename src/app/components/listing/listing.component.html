@@ -1,30 +1,35 @@
-<div class="spinner">
-  <p-progressSpinner *ngIf="isLoading" fxLayout="row" fxLayoutAlign="space-evenly center" fxFill></p-progressSpinner>
+<div class="spinner" fxLayout="row" fxLayoutAlign="space-evenly center" fxFlexFill *ngIf="isLoading">
+  <p-progressSpinner></p-progressSpinner>
 </div>
 
-<div fxLayout="row" fxLayoutAlign="space-evenly center" class="listing" *ngIf="!isLoading">
-  <!--Card-->
-  <mat-card *ngFor="let order of orders; index as i" class="product-card">
+<div fxLayout="column" fxLayoutAlign="space-around center" *ngIf="!isLoading" fxFlexFill>
+  <div fxLayout="row" fxLayoutAlign="space-around center" class="listing" fxFlex>
+    <!--Card-->
+    <mat-card *ngFor="let order of orders; index as i" class="product-card">
 
-    <!--Card Header-->
-    <mat-card-title>
-      <h2 class="h2-responsive" class="title">{{order.Product.Name}}</h2>
-    </mat-card-title>
-    <mat-card-subtitle>
-      <p class="price">{{order.Product.Price}}</p>
-    </mat-card-subtitle>
-    <!--/Card Header-->
+      <!--Card Header-->
+      <mat-card-title>
+        <h2 class="h2-responsive" class="title">{{order.Product.Name}}</h2>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <p class="price">{{order.Product.Price}}</p>
+      </mat-card-subtitle>
+      <!--/Card Header-->
 
-    <!--Card content-->
-    <mat-card-content class="description">
-      <p class="card-text">
-        {{order.Product.Description}}
-      </p>
+      <!--Card content-->
+      <mat-card-content class="description">
+        <p class="card-text">
+          {{order.Product.Description}}
+        </p>
 
-      <p-spinner size="10" [(ngModel)]="order.Quantity" [min]="1" [max]="100" [step]="1" class="quantity" [placeholder]="0"></p-spinner>
-    </mat-card-content>
-    <!--/Card content-->
+        <p-spinner size="10" [(ngModel)]="order.Quantity" [min]="1" [max]="100" [step]="1" class="quantity" [placeholder]="0"></p-spinner>
+      </mat-card-content>
+      <!--/Card content-->
 
-  </mat-card>
-  <!--/Card-->
+    </mat-card>
+    <!--/Card-->
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="25">
+    <button class="btn btn-default">Checkout</button>
+  </div>
 </div>
