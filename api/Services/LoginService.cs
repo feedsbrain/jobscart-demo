@@ -31,7 +31,7 @@ namespace JobsCart.Services
                 return null;
 
             // check if password is correct
-            if (Crypto.HashPassword(password) != user.PasswordHash)
+            if (!Crypto.VerifyHashedPassword(user.PasswordHash, password))
                 return null;
 
             // authentication successful

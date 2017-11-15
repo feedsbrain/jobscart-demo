@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Customer } from '../../api/models/customer';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-header',
@@ -8,17 +10,24 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  localStorage: any
+  localStorage: any;
+  customer: Customer;
+  loginSubscriber: any;
 
-  constructor() {
-    this.localStorage = localStorage
+  constructor(private loginService: LoginService) {
+    this.localStorage = localStorage;
+    this.customer = JSON.parse(localStorage.getItem('currentUser'));
+    this.loginSubscriber = loginService.toggle$.subscribe(data => {
+      this.customer = JSON.parse(localStorage.getItem('currentUser'));
+    });
   }
 
   ngOnInit() {
   }
-  
+
   logout() {
-    localStorage.removeItem('currentUser')
+    this.customer = null;
+    localStorage.removeItem('currentUser');
   }
 
 }

@@ -14,7 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 namespace JobsCart.Controllers
 {
     [Authorize]
-    [Route("[controller]")]
+    [Route("api/[Controller]")]
     public class LoginController : Controller
     {
         private ILoginService _loginService;

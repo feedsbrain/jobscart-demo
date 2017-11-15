@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app.routing';
@@ -14,8 +15,11 @@ import { LoginComponent } from './components/login/login.component';
 import { OrderComponent } from './components/order/order.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ProductService } from './services/product.service';
-import { ProgressSpinnerModule, DialogModule, SpinnerModule, MessagesModule, MessageModule } from 'primeng/primeng';
+import { ProgressSpinnerModule, DialogModule, SpinnerModule, MessagesModule, MessageModule, GrowlModule } from 'primeng/primeng';
 import { HttpModule } from '@angular/http';
+import { AppConfig } from '../app.config';
+import { LoginService } from './services/login.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,7 @@ import { HttpModule } from '@angular/http';
     HttpModule,
     RouterModule.forRoot(AppRoutes),
     BrowserModule,
+    BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
     NgbModule.forRoot(),
@@ -32,9 +37,11 @@ import { HttpModule } from '@angular/http';
     DialogModule,
     SpinnerModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    GrowlModule,
+    FormsModule
   ],
-  providers: [AuthGuard, ProductService],
+  providers: [AppConfig, AuthGuard, ProductService, LoginService],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })

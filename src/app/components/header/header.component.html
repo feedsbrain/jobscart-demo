@@ -1,25 +1,22 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary cart-nav">
-  <a class="navbar-brand" href="#">
-    <h1 class="cart-title">JobsCart</h1>
-  </a>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home
-          <span class="sr-only">(current)</span>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <h1 class="cart-title">JobsCart</h1>
+    </a>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="nav-item" *ngIf="customer != null">
+        <a class="nav-link" href="#">
+          <span class="glyphicon glyphicon-user"></span> Logged as
+          <b>{{customer.UserName}}</b>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+      <li class="nav-item" *ngIf="customer != null">
+        <a class="nav-link" [routerLink]="['/login']" (click)="logout()">
+          <span class="glyphicon glyphicon-log-out"></span> Log Out</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+      <li class="nav-item" *ngIf="customer  == null ">
+        <a class="nav-link" [routerLink]="['/login']">
+          <span class="glyphicon glyphicon-log-in"></span> Log In</a>
       </li>
     </ul>
   </div>
