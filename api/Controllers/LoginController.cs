@@ -19,7 +19,6 @@ namespace JobsCart.Controllers
     {
         private ILoginService _loginService;
         private IMapper _mapper;
-
         private readonly AppSettings _appSettings;
 
         public LoginController(

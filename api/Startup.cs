@@ -67,6 +67,7 @@ namespace JobsCart
 
             // configure DI for application services
             services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<ICheckoutService, CheckoutService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
