@@ -20,6 +20,7 @@ import { HttpModule } from '@angular/http';
 import { AppConfig } from '../app.config';
 import { LoginService } from './services/login.service';
 import { FormsModule } from '@angular/forms';
+import { OrderService } from './services/order.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { FormsModule } from '@angular/forms';
     GrowlModule,
     FormsModule
   ],
-  providers: [AppConfig, AuthGuard, ProductService, LoginService],
+  providers: [AppConfig, AuthGuard, LoginService, ProductService, OrderService],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })

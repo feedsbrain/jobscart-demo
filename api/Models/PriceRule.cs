@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 namespace JobsCart.Models
 {
@@ -17,7 +19,7 @@ namespace JobsCart.Models
         public int MinQuantity { get; set; }
         public int BonusQuantity { get; set; }
         public double DiscountedPrice { get; set; }
-        public virtual Product Product { get; set; }
+        public Product Product { get; set; }
     }
 
 }

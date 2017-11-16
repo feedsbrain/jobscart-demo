@@ -5,6 +5,9 @@ import { Product } from '../../api/models/product';
 import { Order } from '../../api/models/order';
 import { Message } from 'primeng/primeng';
 import * as _ from 'lodash';
+import { Customer } from '../../api/models/customer';
+import { OrderDetail } from '../../api/models/orderdetail';
+import { OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-listing',
@@ -13,25 +16,29 @@ import * as _ from 'lodash';
   encapsulation: ViewEncapsulation.None
 })
 export class ListingComponent implements OnInit {
-
-  orders: Array<Order>;
+  customer: Customer;
+  order: Order;
   isLoading = true;
   msgs: Message[] = [];
 
-  constructor(private productService: ProductService, private router: Router) { }
+  constructor(private productService: ProductService, private orderService: OrderService, private router: Router) {
+    this.customer = JSON.parse(localStorage.getItem('currentUser'));
+    this.order = new Order();
+    this.order.Customer = this.customer;
+  }
 
   ngOnInit() {
     this.productService.getProductList().subscribe(result => {
       this.isLoading = false;
-      this.orders = result.map(p => {
-        const o = new Order();
-        o.Product = new Product();
-        o.Product.Id = p.id;
-        o.Product.Name = p.name;
-        o.Product.Description = p.description;
-        o.Product.Price = p.price;
-        o.Quantity = 1;
-        return o;
+      this.order.OrderDetails = result.map(p => {
+        const od = new OrderDetail();
+        od.Product = new Product();
+        od.Product.Id = p.id;
+        od.Product.Name = p.name;
+        od.Product.Description = p.description;
+        od.Product.Price = p.price;
+        od.Quantity = 1;
+        return od;
       });
     }, err => {
       if (err.status === 401) {
@@ -43,14 +50,22 @@ export class ListingComponent implements OnInit {
 
   checkout() {
     let quantity = 0;
-    this.orders.forEach(o => {
+    this.order.OrderDetails.forEach(o => {
       quantity += o.Quantity;
     });
     if (quantity === 0) {
       this.showWarn('Invalid quantity ...');
       return;
     }
-    // TODO: Success
+    const _self = this;
+    _self.orderService.checkout(_self.order)
+      .subscribe(
+      data => {
+        debugger;
+      },
+      error => {
+        debugger;
+      });
   }
 
   showSuccess(message: string) {

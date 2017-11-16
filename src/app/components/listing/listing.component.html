@@ -10,7 +10,7 @@
   </div>
   <div fxLayout="row" fxLayoutAlign="space-around center" class="listing" fxFlex>
     <!--Card-->
-    <mat-card *ngFor="let order of orders; index as i" class="product-card">
+    <mat-card *ngFor="let order of order.OrderDetails; index as i" class="product-card">
 
       <!--Card Header-->
       <mat-card-title>
@@ -27,7 +27,7 @@
           {{order.Product.Description}}
         </p>
 
-        <p-spinner size="10" [(ngModel)]="order.Quantity" [min]="1" [max]="100" [step]="1" class="quantity" [placeholder]="1"></p-spinner>
+        <p-spinner size="10" [(ngModel)]="order.Quantity" [min]="0" [max]="100" [step]="1" class="quantity" [placeholder]="0"></p-spinner>
       </mat-card-content>
       <!--/Card content-->
 

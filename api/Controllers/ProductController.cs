@@ -16,7 +16,7 @@ namespace JobsCart.Controllers {
 
         [HttpGet]
         public IActionResult GetProducts () {
-            return Json (_context.Products.AsEnumerable ());
+            return Json(_context.Products.AsEnumerable());
         }
     }
     

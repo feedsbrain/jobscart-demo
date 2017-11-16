@@ -15,10 +15,10 @@ export class LoginService {
     this._toggle.next(login);
   }
 
-  constructor(private http: Http, private config: AppConfig) { }
+  constructor(private http: Http, private appConfig: AppConfig) { }
 
   login(username: string, password: string) {
-    return this.http.post(this.config.apiUrl + '/api/login/authenticate', { username: username, password: password })
+    return this.http.post(this.appConfig.apiUrl + '/api/login/authenticate', { username: username, password: password })
       .map((response: Response) => {
         // login successful if there's a jwt token in the response
         const responseObject = response.json();

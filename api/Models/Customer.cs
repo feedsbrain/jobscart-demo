@@ -4,6 +4,6 @@ using Microsoft.AspNetCore.Identity;
 
 namespace JobsCart.Models {
     public class Customer : IdentityUser, IDataModel {
-        public IEnumerable<PriceRule> PriceRules { get; set; }
+        public ICollection<PriceRule> PriceRules { get; set; }
     }
 }

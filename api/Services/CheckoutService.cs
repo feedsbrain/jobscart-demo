@@ -25,7 +25,10 @@ namespace JobsCart.Services
         public Order Checkout(OrderDto orderDto)
         {
             var order = new Order();
-            var customer = _context.Customers.First(c => c.Id == orderDto.CustomerId);
+
+            var customer = _context.Customers.First(c => c.UserName == orderDto.CustomerId);
+            _context.Entry(customer).Collection(c => c.PriceRules).Load();
+            
             order.Customer = customer;
             var orderDetails = new List<OrderDetail>();
             foreach (var od in orderDto.OrderDetails)
@@ -40,7 +43,7 @@ namespace JobsCart.Services
             order.OrderDetails = orderDetails;
 
             // Calculate Discount
-            var co = new Checkout(new HashSet<PriceRule>(customer.PriceRules));
+            var co = new Checkout(customer.PriceRules != null && customer.PriceRules.Any() ? new HashSet<PriceRule>(customer.PriceRules) : new HashSet<PriceRule>());
             co.Add(order);
             order.PriceAfterDiscount = co.Total();
 

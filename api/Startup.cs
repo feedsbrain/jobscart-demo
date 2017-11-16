@@ -37,7 +37,9 @@ namespace JobsCart
             services.AddDbContext<JobsDbContext>(options =>
                options.UseInMemoryDatabase("JobsCart")
             );
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(
+                options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
             services.AddAutoMapper();
 
             // configure strongly typed settings objects

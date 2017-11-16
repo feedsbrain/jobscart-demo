@@ -1,8 +1,12 @@
 import { Product } from './product';
+import { Customer } from './customer';
+import { OrderDetail } from './orderdetail';
 
 export class Order {
-    public UserName: string;
-    public Product: Product;
-    public Quantity: number;
-    public Price: number;
+    public Id: string;
+    public Customer: Customer;
+    public OrderDetails: Array<OrderDetail>;
+    public TotalPrice: number;
+    public PriceAfterDiscount: number;
+    public Saving: number;
 }
