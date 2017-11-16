@@ -1,0 +1,33 @@
+<div fxLayout="row" fxLayoutAlign="space-around center" class="listing" fxFlexFill>
+  <!--Card-->
+  <mat-card class="login-card">
+
+    <!--Card Header-->
+    <mat-card-title>
+      <h2 class="h2-responsive" class="title">Login</h2>
+    </mat-card-title>
+    <!--/Card Header-->
+
+    <!--Card content-->
+    <form class="form-signin" (submit)="login()">
+      <mat-card-content class="description" fxLayout="column" fxLayoutALign="space-evenly center" fxFlexFill>
+
+        <mat-form-field>
+          <input matInput placeholder="Enter your username" #UserName="ngModel" [(ngModel)]="model.UserName" name="UserName" required>
+          <mat-error *ngIf="!model.UserName">{{getErrorMessage('username')}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Enter your password" #Password="ngModel" [(ngModel)]="model.Password" name="Password" required>
+          <mat-error *ngIf="!model.Password">{{getErrorMessage('password')}}</mat-error>
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="25">
+          <button mat-raised-button color="accent" type="submit">Login</button>
+        </div>
+      </mat-card-content>
+    </form>
+    <!--/Card content-->
+
+  </mat-card>
+  <!--/Card-->
+</div>
+<p-growl [(value)]="msgs"></p-growl>

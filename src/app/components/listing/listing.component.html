@@ -1,0 +1,64 @@
+<div class="spinner" fxLayout="row" fxLayoutAlign="space-evenly center" fxFlexFill *ngIf="isLoading">
+  <p-progressSpinner></p-progressSpinner>
+</div>
+
+<div fxLayout="column" fxLayoutAlign="space-around center" *ngIf="!isLoading" fxFlexFill>
+  <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="10" fxFlexFill>
+    <div fxFlex="1"></div>
+    <p-messages [(value)]="msgs" fxFlex></p-messages>
+    <div fxFlex="1"></div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-around center" class="listing" fxFlex>
+    <!--Card-->
+    <mat-card *ngFor="let order of order.OrderDetails; index as i" class="product-card">
+
+      <!--Card Header-->
+      <mat-card-title>
+        <h2 class="h2-responsive" class="title">{{order.Product.Name}}</h2>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <p class="price">{{order.Product.Price | currency:'USD':'$'}}</p>
+      </mat-card-subtitle>
+      <!--/Card Header-->
+
+      <!--Card content-->
+      <mat-card-content class="description">
+        <p class="card-text">
+          {{order.Product.Description}}
+        </p>
+
+        <p-spinner size="10" [(ngModel)]="order.Quantity" [min]="0" [max]="100" [step]="1" class="quantity" [placeholder]="0"></p-spinner>
+      </mat-card-content>
+      <!--/Card content-->
+
+    </mat-card>
+    <!--/Card-->
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="25">
+    <button mat-raised-button color="accent" (click)="checkout()">Checkout</button>
+  </div>
+</div>
+
+<p-dialog header="Checkout Summary" [(visible)]="displayDialog" [width]="640" [modal]="true">
+  <mat-list *ngFor="let order of checkoutDetail.orderDetails">
+    <mat-list-item class="item name">{{order.product.name}}</mat-list-item>
+    <mat-list-item class="item description">{{order.product.description}} </mat-list-item>
+    <mat-list-item class="item price-qty">Price = {{order.product.price | currency:'USD':'$'}} x {{order.quantity}} = {{(order.product.price * order.quantity)
+      | currency:'USD':'$'}}</mat-list-item>
+  </mat-list>
+  <div class="summary">
+    <div class="total">
+      Total Price: {{checkoutDetail.totalPrice | currency:'USD':'$'}}
+    </div>
+    <div class="after-discount">
+      Total Price After Discount: {{checkoutDetail.priceAfterDiscount | currency:'USD':'$'}}
+    </div>
+    <div class="saving">
+      You Saved: {{checkoutDetail.saving | currency:'USD':'$'}}
+    </div>
+  </div>
+
+  <p-footer>
+    <button mat-raised-button color="primary" (click)="confirm()">Confirm</button>
+  </p-footer>
+</p-dialog>

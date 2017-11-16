@@ -1,0 +1,42 @@
+.listing {
+    text-align: center;
+    .product-card {
+        width: 300px;
+        height: 300px;
+    }
+    .title,
+    .price,
+    .quantity input {
+        height: 32px;
+        text-align: center;
+    }
+    p.price {
+        font-size: 28px;
+    }
+    .card-text {
+        height: 75px;
+    }
+}
+
+.item.name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.item.description {
+    margin-top: -7px;
+    margin-bottom: -5px;
+}
+
+.item.price-qty {
+    font-weight: bold;
+}
+
+.summary {
+    text-align: right;
+    font-weight: bold;
+}
+
+.saving {
+    font-size: 22px;
+}
