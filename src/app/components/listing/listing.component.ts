@@ -20,6 +20,8 @@ export class ListingComponent implements OnInit {
   order: Order;
   isLoading = true;
   msgs: Message[] = [];
+  displayDialog = false;
+  checkoutDetail: any = {};
 
   constructor(private productService: ProductService, private orderService: OrderService, private router: Router) {
     this.customer = JSON.parse(localStorage.getItem('currentUser'));
@@ -61,10 +63,11 @@ export class ListingComponent implements OnInit {
     _self.orderService.checkout(_self.order)
       .subscribe(
       data => {
-        debugger;
+        _self.checkoutDetail = data;
+        this.displayDialog = true;
       },
       error => {
-        debugger;
+        console.error(error);
       });
   }
 
@@ -90,6 +93,11 @@ export class ListingComponent implements OnInit {
 
   clearMessage() {
     this.msgs = [];
+  }
+
+  confirm() {
+    this.showSuccess('Order has been successfully placed...');
+    this.displayDialog = false;
   }
 
 }

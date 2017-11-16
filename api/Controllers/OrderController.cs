@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using AutoMapper;
 using JobsCart.DAL;
 using JobsCart.DTOs;
 using JobsCart.Helpers;
@@ -17,10 +18,12 @@ namespace JobsCart.Controllers
     public class OrderController : Controller
     {
         private ICheckoutService _checkoutService;
+        private IMapper _mapper;
 
-        public OrderController(ICheckoutService checkoutService)
+        public OrderController(ICheckoutService checkoutService, IMapper mapper)
         {
             _checkoutService = checkoutService;
+            _mapper = mapper;
         }
 
         [HttpPost("checkout")]
@@ -28,7 +31,7 @@ namespace JobsCart.Controllers
         {
             // Currently just use UserName for simplicity
             order.CustomerId = User.FindFirst(ClaimTypes.Name).Value;
-            var result = _checkoutService.Checkout(order);
+            var result = _mapper.Map<CheckoutDto>(_checkoutService.Checkout(order));
             return Json(result);
         }
     }

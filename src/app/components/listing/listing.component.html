@@ -38,3 +38,27 @@
     <button mat-raised-button color="accent" (click)="checkout()">Checkout</button>
   </div>
 </div>
+
+<p-dialog header="Checkout Summary" [(visible)]="displayDialog" [width]="640" [modal]="true">
+  <mat-list *ngFor="let order of checkoutDetail.orderDetails">
+    <mat-list-item class="item name">{{order.product.name}}</mat-list-item>
+    <mat-list-item class="item description">{{order.product.description}} </mat-list-item>
+    <mat-list-item class="item price-qty">Price = {{order.product.price | currency:'USD':'$'}} x {{order.quantity}} = {{(order.product.price * order.quantity)
+      | currency:'USD':'$'}}</mat-list-item>
+  </mat-list>
+  <div class="summary">
+    <div class="total">
+      Total Price: {{checkoutDetail.totalPrice | currency:'USD':'$'}}
+    </div>
+    <div class="after-discount">
+      Total Price After Discount: {{checkoutDetail.priceAfterDiscount | currency:'USD':'$'}}
+    </div>
+    <div class="saving">
+      You Saved: {{checkoutDetail.saving | currency:'USD':'$'}}
+    </div>
+  </div>
+
+  <p-footer>
+    <button mat-raised-button color="primary" (click)="confirm()">Confirm</button>
+  </p-footer>
+</p-dialog>

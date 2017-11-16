@@ -8,5 +8,9 @@ public class AutoMapperProfile : Profile
     {
         CreateMap<Customer, CustomerDto>();
         CreateMap<CustomerDto, Customer>();
+        CreateMap<Order, CheckoutDto>();
+        CreateMap<CheckoutDto, Order>();
+        CreateMap<OrderDetail, CheckoutDetailDto>();
+        CreateMap<CheckoutDetailDto, OrderDetail>();
     }
 }

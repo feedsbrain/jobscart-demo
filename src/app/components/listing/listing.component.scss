@@ -17,3 +17,26 @@
         height: 75px;
     }
 }
+
+.item.name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.item.description {
+    margin-top: -7px;
+    margin-bottom: -5px;
+}
+
+.item.price-qty {
+    font-weight: bold;
+}
+
+.summary {
+    text-align: right;
+    font-weight: bold;
+}
+
+.saving {
+    font-size: 22px;
+}

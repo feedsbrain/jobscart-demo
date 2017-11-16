@@ -3,6 +3,7 @@ import { Http, Response, Headers, RequestOptions, RequestOptionsArgs } from '@an
 import { Order } from '../api/models/order';
 import { AppConfig } from '../../app.config';
 import { Customer } from '../api/models/customer';
+import { Checkout } from '../api/models/checkout';
 
 @Injectable()
 export class OrderService {
@@ -25,10 +26,10 @@ export class OrderService {
       method: 'POST',
       headers: this.getAuthHeaders()
     };
-    debugger;
     return this.http.post(currentPath, JSON.stringify(payload), requestOptions)
       .map((response: Response) => {
-        debugger;
+        const checkout: Checkout = response.json();
+        return checkout;
       });
   }
 
