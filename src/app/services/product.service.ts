@@ -1,9 +1,10 @@
+
+import { throwError as observableThrowError, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, RequestOptionsArgs } from '@angular/http';
-// tslint:disable-next-line:import-blacklist
-import { Observable } from 'rxjs/Rx';
 import { AppConfig } from '../../app.config';
 import { Customer } from '../api/models/customer';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ProductService {
@@ -18,8 +19,10 @@ export class ProductService {
       headers: this.getAuthHeaders()
     };
 
-    return this.http.get(currentPath, requestOptions).map((res: Response) => res.json())
-      .catch(error => Observable.throw(error.message || error));
+    return this.http.get(currentPath, requestOptions)
+      .pipe(map((response: Response) => {
+        return response.json();
+      }));
   }
 
   // private helper methods

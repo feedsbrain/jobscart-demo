@@ -4,6 +4,7 @@ import { Order } from '../api/models/order';
 import { AppConfig } from '../../app.config';
 import { Customer } from '../api/models/customer';
 import { Checkout } from '../api/models/checkout';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class OrderService {
@@ -16,6 +17,7 @@ export class OrderService {
     const payload: any = {};
     payload.orderDetails = [];
     order.OrderDetails.forEach(o => {
+      // tslint:disable-next-line:no-shadowed-variable
       const order: any = {};
       order.productId = o.Product.Id;
       order.quantity = o.Quantity;
@@ -27,10 +29,10 @@ export class OrderService {
       headers: this.getAuthHeaders()
     };
     return this.http.post(currentPath, JSON.stringify(payload), requestOptions)
-      .map((response: Response) => {
+      .pipe(map((response: Response) => {
         const checkout: Checkout = response.json();
         return checkout;
-      });
+      }));
   }
 
   // private helper methods

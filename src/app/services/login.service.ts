@@ -4,6 +4,7 @@ import { Http, Headers, Response } from '@angular/http';
 import { AppConfig } from '../../app.config';
 // tslint:disable-next-line:import-blacklist
 import { Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class LoginService {
@@ -19,7 +20,7 @@ export class LoginService {
 
   login(username: string, password: string) {
     return this.http.post(this.appConfig.apiUrl + '/api/login/authenticate', { username: username, password: password })
-      .map((response: Response) => {
+      .pipe(map((response: Response) => {
         // login successful if there's a jwt token in the response
         const responseObject = response.json();
         const customer = new Customer();
@@ -31,7 +32,7 @@ export class LoginService {
           localStorage.setItem('currentUser', JSON.stringify(customer));
         }
         return customer;
-      });
+      }));
   }
 
   logout() {
