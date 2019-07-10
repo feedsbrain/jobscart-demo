@@ -31,7 +31,7 @@
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
     "jquery": "^3.4.0",
-    "lodash": "^4.17.12",
+    "lodash": "^4.17.13",
     "popper.js": "^1.15.0",
     "primeng": "^7.1.3",
     "rxjs": "^6.5.2",
