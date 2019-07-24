@@ -33,7 +33,7 @@
     "jquery": "^3.4.0",
     "lodash": "^4.17.14",
     "popper.js": "^1.15.0",
-    "primeng": "^8.0.1",
+    "primeng": "^8.0.2",
     "rxjs": "^6.5.2",
     "rxjs-compat": "^6.5.2",
     "tslib": "^1.10.0",
